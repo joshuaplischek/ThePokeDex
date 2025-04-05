@@ -10,6 +10,8 @@ header{
 .header-middle-desgin{
     display: flex;
     justify-content: center;
+    align-items: center;
+    gap: 50px;
 }
 
 .middle-container{
@@ -56,9 +58,20 @@ header{
     height: 20px;
     background-color: #54ee69;
     border-radius: 20px;
+    border: 0;
 }
 
 .green-led:hover{
     box-shadow: 2px 2px 10px 2px #54ee69;
     transition: 0.2s;
+}
+
+.header-infos{
+    color: white;
+    margin: 0;
+}
+
+.header-infos p{
+    margin: 0;
+    text-align: end;
 }
