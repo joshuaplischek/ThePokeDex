@@ -75,3 +75,6 @@ header{
     margin: 0;
     text-align: end;
 }
+input{
+    text-align: center;
+}
