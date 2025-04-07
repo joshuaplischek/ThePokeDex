@@ -24,6 +24,7 @@ async function getAllData() {
 }
 
 async function getGermanNames(everyPoke) {
+    let print = document.getElementById('namesList');
 
     for (let i = 0; i < everyPoke.length; i++) {
         let pokeUrlFetch = await fetch(everyPoke[i].url);
@@ -33,7 +34,15 @@ async function getGermanNames(everyPoke) {
         let pokeSpeciesFetchToJason = await pokeSpeciesFetch.json();
         let germanPokemonName = pokeSpeciesFetchToJason.names[5].name;
         console.log(germanPokemonName);
+        print.innerHTML += printNames(germanPokemonName);
     }
 }
+
+function printNames(germanPokemonName){
+    return/*html*/`
+        <li>${germanPokemonName}</li>
+    `
+}
+
 
 // Das abrufen der deutschen Namen Functioniert mit der getGermanNames() function!!

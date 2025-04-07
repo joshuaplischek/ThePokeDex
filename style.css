@@ -1,4 +1,5 @@
 #content{
+    padding: 0 25px;
     width: 100%;
     height: calc(100vh - 300px);
     background-color: white;
