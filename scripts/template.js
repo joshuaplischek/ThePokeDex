@@ -12,7 +12,7 @@ function renderMiniCradsTemplate(i) {
             <div class="pokemonIds" id="pokemonContainerId${i}"></div>
             <div class="pokemon-name" id="pokemonName${i}"></div>
             <div>
-                <div id="pokemonType"></div>
+                <div id="pokemonType${i}"></div>
                 <div id="pokemonImg"></div>
             </div>
         </div> 
@@ -31,5 +31,11 @@ function renderIdTemplate(id) {
             <img src="./assets/img/pokeIdsymb.png" alt="">
             <p>${id}</p>
         </div>
+    `
+}
+
+function renderTypes(type) {
+    return/*html*/`
+        <p>${type}</p>
     `
 }

@@ -55,10 +55,10 @@ async function getPokeId(IdOfPokemon, i) {
 }
 
 function getPokemonTypes(types, i){
-    
+    let pokeType = document.getElementById(`pokemonType${i}`);
     for (let indeyType = 0; indeyType < types.length; indeyType++) {
-        const type = array[indeyType];
-        console.log(type)
-        
+        const type = types[indeyType];
+        console.log(type.name)
+        pokeType.innerHTML += renderTypes(type);
     }
 }
