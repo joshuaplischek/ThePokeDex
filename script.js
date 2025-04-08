@@ -1,4 +1,8 @@
-let url = "https://pokeapi.co/api/v2/pokemon?limit=10&offset=0";
+let loadAmount = 10
+
+let startLoad = 0
+
+let url = `https://pokeapi.co/api/v2/pokemon?limit=${loadAmount}&offset=${startLoad}`;
 
 function init() {
     getAllData();
@@ -21,6 +25,7 @@ async function getAllData() {
     let translatet = await response.json();
     let everyPoke = translatet.results;
     getGermanNames(everyPoke);
+    getPokeId(everyPoke);
 }
 
 async function getGermanNames(everyPoke) {
@@ -31,9 +36,19 @@ async function getGermanNames(everyPoke) {
         let pokeSpeciesFetch = await fetch(pokeFetchToJason.species.url);
         let pokeSpeciesFetchToJason = await pokeSpeciesFetch.json();
         let germanPokemonName = pokeSpeciesFetchToJason.names[5].name;
+        let IdOfPokemon = pokeFetchToJason.id;
         contentRef.innerHTML += renderMiniCradsTemplate(i);
-        let pokeName = document.getElementById(`pokemonName${i}`);
-        console.log(germanPokemonName);
-        pokeName.innerHTML += renderNameTemplate(germanPokemonName);
+        printGermanPokeName(germanPokemonName, i);
+        getPokeId(IdOfPokemon, i);
     }
+}
+
+function printGermanPokeName(germanPokemonName ,i) {
+    let pokeName = document.getElementById(`pokemonName${i}`);
+    pokeName.innerHTML += renderNameTemplate(germanPokemonName);
+}
+
+async function getPokeId(IdOfPokemon, i) {
+    let pokeId = document.getElementById(`pokemonContainerId${i}`);
+    pokeId.innerHTML += renderIdTemplate(IdOfPokemon);
 }

@@ -1,4 +1,4 @@
-function printNames(germanPokemonName){
+function printNames(germanPokemonName) {
     return/*html*/`
         <div id="miniPokeCard">
 
@@ -9,8 +9,8 @@ function printNames(germanPokemonName){
 function renderMiniCradsTemplate(i) {
     return/*html*/`
         <div id="miniPokeCard">
-            <div id="pokemonId"></div>
-            <div id="pokemonName${i}"></div>
+            <div class="pokemonIds" id="pokemonContainerId${i}"></div>
+            <div class="pokemon-name" id="pokemonName${i}"></div>
             <div>
                 <div id="pokemonType"></div>
                 <div id="pokemonImg"></div>
@@ -19,8 +19,17 @@ function renderMiniCradsTemplate(i) {
     `
 }
 
-function renderNameTemplate(name){
+function renderNameTemplate(name) {
     return/*html*/`
         <h3>${name}</h3>
+    `
+}
+
+function renderIdTemplate(id) {
+    return/*html*/`
+        <div class="id-conatiiner">
+            <img src="" alt="">
+            <p>${id}</p>
+        </div>
     `
 }

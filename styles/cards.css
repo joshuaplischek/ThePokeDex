@@ -1,6 +1,43 @@
-#miniPokeCard{
+#miniPokeCard {
+    display: flex;
+    flex-direction: column;
     width: 200px;
     height: 200px;
-    background-color: gray;
+    background-color: rgb(57, 54, 234);
     border-radius: 10px;
+}
+
+.pokemon-name h3 {
+    font-size: 24px;
+    margin: 0 20px;
+    color: white;
+}
+
+.pokemonIds {
+    display: flex;
+    flex-direction: row;
+    color: white;
+    justify-content: end;
+    margin-right: 20px;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.id-conatiiner{
+    display: flex;
+    flex-direction: row;
+    color: white;
+    justify-content: end;
+    align-items: center;
+    gap: 5px;
+}
+
+.id-conatiiner p{
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.pokemonIds img {
+    height: 20px;
+    width: 20px;
 }
