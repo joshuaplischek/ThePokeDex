@@ -28,7 +28,7 @@ function renderNameTemplate(name) {
 function renderIdTemplate(id) {
     return/*html*/`
         <div class="id-conatiiner">
-            <img src="" alt="">
+            <img src="./assets/img/pokeIdsymb.png" alt="">
             <p>${id}</p>
         </div>
     `
