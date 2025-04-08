@@ -58,7 +58,6 @@ function getPokemonTypes(types, i){
     let pokeType = document.getElementById(`pokemonType${i}`);
     for (let indeyType = 0; indeyType < types.length; indeyType++) {
         const type = types[indeyType];
-        console.log(type.name)
-        pokeType.innerHTML += renderTypes(type);
+        pokeType.innerHTML += renderTypes(type.type.name);
     }
 }
