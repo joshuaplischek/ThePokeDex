@@ -25,7 +25,6 @@ async function getAllData() {
     let translatet = await response.json();
     let everyPoke = translatet.results;
     getGermanNames(everyPoke);
-    getPokeId(everyPoke);
 }
 
 async function getGermanNames(everyPoke) {
@@ -37,9 +36,11 @@ async function getGermanNames(everyPoke) {
         let pokeSpeciesFetchToJason = await pokeSpeciesFetch.json();
         let germanPokemonName = pokeSpeciesFetchToJason.names[5].name;
         let IdOfPokemon = pokeFetchToJason.id;
+        let typeOfPokemons = pokeFetchToJason.types;
         contentRef.innerHTML += renderMiniCradsTemplate(i);
         printGermanPokeName(germanPokemonName, i);
         getPokeId(IdOfPokemon, i);
+        getPokemonTypes(typeOfPokemons, i);
     }
 }
 
@@ -51,4 +52,13 @@ function printGermanPokeName(germanPokemonName ,i) {
 async function getPokeId(IdOfPokemon, i) {
     let pokeId = document.getElementById(`pokemonContainerId${i}`);
     pokeId.innerHTML += renderIdTemplate(IdOfPokemon);
+}
+
+function getPokemonTypes(types, i){
+    
+    for (let indeyType = 0; indeyType < types.length; indeyType++) {
+        const type = array[indeyType];
+        console.log(type)
+        
+    }
 }
