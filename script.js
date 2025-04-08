@@ -1,4 +1,4 @@
-let url = "https://pokeapi.co/api/v2/pokemon?limit=5&offset=0";
+let url = "https://pokeapi.co/api/v2/pokemon?limit=10&offset=0";
 
 function init() {
     getAllData();
@@ -25,17 +25,15 @@ async function getAllData() {
 
 async function getGermanNames(everyPoke) {
     let contentRef = document.getElementById('content');
-
     for (let i = 0; i < everyPoke.length; i++) {
         let pokeUrlFetch = await fetch(everyPoke[i].url);
         let pokeFetchToJason = await pokeUrlFetch.json();
-        
         let pokeSpeciesFetch = await fetch(pokeFetchToJason.species.url);
         let pokeSpeciesFetchToJason = await pokeSpeciesFetch.json();
         let germanPokemonName = pokeSpeciesFetchToJason.names[5].name;
-        console.log(germanPokemonName);
         contentRef.innerHTML += renderMiniCradsTemplate(i);
+        let pokeName = document.getElementById(`pokemonName${i}`);
+        console.log(germanPokemonName);
+        pokeName.innerHTML += renderNameTemplate(germanPokemonName);
     }
 }
-
-// Das abrufen der deutschen Namen Functioniert mit der getGermanNames() function!!
