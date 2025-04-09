@@ -11,11 +11,11 @@ function renderMiniCradsTemplate(i) {
         <div id="miniPokeCard">
             <div class="pokemonIds" id="pokemonContainerId${i}"></div>
             <div class="pokemon-name" id="pokemonName${i}"></div>
-            <div>
+            <div class="type-image-container">
                 <div class="pokemon-types">
                     <div id="pokemonType${i}"></div>
                 </div>
-                <div id="pokemonImg"></div>
+                <div class="poke-image" id="pokemonImg${i}"></div>
             </div>
         </div> 
     `
@@ -41,5 +41,11 @@ function renderTypes(type) {
         <div class="single-type-cart">
             <p>${type}</p>
         </div>
+    `
+}
+
+function renderPic(gif) {
+    return/*html*/`
+        <img src="${gif}" alt="">
     `
 }
