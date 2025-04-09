@@ -42,6 +42,14 @@ async function getGermanNames(everyPoke) {
 function renderCard(i) {
     let contentRef = document.getElementById('content');
     contentRef.innerHTML += renderMiniCradsTemplate(i);
+    renderSeenPokemon();
+}
+
+function renderSeenPokemon() {
+    let amountOfLoadedPokemons = document.getElementById(`seenPokemon`); 
+    let renderAmount = startLoad;
+    renderAmount += 20;
+    amountOfLoadedPokemons.innerHTML = `[${renderAmount}]`
 }
 
 function printGermanPokeName(germanPokemonName ,i) {
@@ -84,6 +92,7 @@ async function getPokeImages(fetchGif, i) {
 
 async function loadMore(){
     startLoad += loadAmount;
+    renderSeenPokemon();
     updateUrl();
     let response = await fetch(url)
     let translatet = await response.json();
