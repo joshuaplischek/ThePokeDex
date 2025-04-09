@@ -1,13 +1,17 @@
-#miniPokeCard {
+.miniPokeCard {
     display: flex;
     flex-direction: column;
     width: 200px;
     height: 200px;
-    background-color: rgb(57, 54, 234);
     border-radius: 10px;
 }
-#miniPokeCard:hover{
+.miniPokeCard:hover{
     cursor: pointer;
+    .poke-image img{
+        position: relative;
+        height: 160px;
+        width: 160px;
+    }
 }
 
 .pokemon-name h3 {
@@ -71,12 +75,16 @@
 }
 
 .type-image-container{
+    width: 100%;
+    height: 100px;
+    margin-top: 40px;
     display: flex;
     align-items: end;
-    justify-content: space-between;
+    
 }
 
 .poke-image img{
+    position: relative;
     height: 120px;
     width: 120px;
 }

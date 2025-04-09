@@ -1,4 +1,4 @@
-let loadAmount = 20;
+let loadAmount = 40;
 
 let startLoad = 0;
 
@@ -50,12 +50,21 @@ async function getPokeId(IdOfPokemon, i) {
 }
 
 function getPokemonTypes(types, i){
+    let card = document.getElementById(`miniPokeCard${i}`);
     let pokeType = document.getElementById(`pokemonType${i}`);
     for (let indeyType = 0; indeyType < types.length; indeyType++) {
         const type = types[indeyType];
         let translated = translateType(type.type.name);      
         pokeType.innerHTML += renderTypes(translated); 
-    }
+    }    
+    colorCard(card, types);
+}
+
+function colorCard(card, types){
+    let colorOne = pokemonColor[types[0].type.name];
+    let colorTwo = types[1] ? pokemonColor[types[1].type.name] : colorOne;
+
+    card.style.background = `linear-gradient(${colorOne}, ${colorTwo})`;
 }
 
 function translateType(type) {
@@ -66,4 +75,13 @@ async function getPokeGifs(fetchGif, i) {
     let pokeGif = document.getElementById(`pokemonImg${i}`)
     let gif = fetchGif.url;
     pokeGif.innerHTML += renderPic(gif)
+}
+
+async function loadMore(){
+    let loadMoreUrl = `https://pokeapi.co/api/v2/pokemon?limit=${loadAmount}&offset=${startLoad}`;
+    loadAmount += 20;
+    let response = await fetch(loadMoreUrl)
+    let translatet = await response.json();
+    let everyPoke = translatet.results;
+    getGermanNames(everyPoke);
 }

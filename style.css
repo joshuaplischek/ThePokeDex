@@ -4,8 +4,8 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 30px;
-    padding: 25px;
-    width: calc(100% - 50px);
+    padding: 40px;
+    width: calc(100% - 80px);
     height: 100%;
     background-color: white;
 }
