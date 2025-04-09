@@ -6,7 +6,7 @@ let pokemonTypeTranslater = {
     "ground": "Boden",
     "rock": "Gestein",
     "bug": "Käfer",
-    "ghost": "Gespenst",
+    "ghost": "Geist",
     "steel": "Stahl",
     "fire": "Feuer",
     "water": "Wasser",

@@ -1,4 +1,4 @@
-let loadAmount = 500;
+let loadAmount = 20;
 
 let startLoad = 0;
 
