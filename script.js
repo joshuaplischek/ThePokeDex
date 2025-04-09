@@ -1,4 +1,4 @@
-let loadAmount = 40;
+let loadAmount = 20;
 
 let startLoad = 0;
 
@@ -6,6 +6,10 @@ let url = `https://pokeapi.co/api/v2/pokemon?limit=${loadAmount}&offset=${startL
 
 function init() {
     getAllData();
+}
+
+function updateUrl() {
+    url = `https://pokeapi.co/api/v2/pokemon?limit=${loadAmount}&offset=${startLoad}`;
 }
 
 async function getAllData() {
@@ -17,7 +21,8 @@ async function getAllData() {
 
 async function getGermanNames(everyPoke) {
     for (let i = 0; i < everyPoke.length; i++) {
-        let gifUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i+1}.png`
+        let globalIndex = startLoad + i;
+        let gifUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${globalIndex+1}.png`
         let fetchGif = await fetch(gifUrl);
         let pokeUrlFetch = await fetch(everyPoke[i].url);
         let pokeFetchToJason = await pokeUrlFetch.json();
@@ -26,11 +31,11 @@ async function getGermanNames(everyPoke) {
         let germanPokemonName = pokeSpeciesFetchToJason.names[5].name;
         let IdOfPokemon = pokeFetchToJason.id;
         let typeOfPokemons = pokeFetchToJason.types;
-        renderCard(i);
-        printGermanPokeName(germanPokemonName, i);
-        getPokeId(IdOfPokemon, i);
-        getPokemonTypes(typeOfPokemons, i);
-        getPokeGifs(fetchGif, i)
+        renderCard(globalIndex);
+        printGermanPokeName(germanPokemonName, globalIndex);
+        getPokeId(IdOfPokemon, globalIndex);
+        getPokemonTypes(typeOfPokemons, globalIndex);
+        getPokeImages(fetchGif, globalIndex)
     }
 }
 
@@ -71,16 +76,16 @@ function translateType(type) {
     return pokemonTypeTranslater[type] || type; 
 }
 
-async function getPokeGifs(fetchGif, i) {
+async function getPokeImages(fetchGif, i) {
     let pokeGif = document.getElementById(`pokemonImg${i}`)
     let gif = fetchGif.url;
     pokeGif.innerHTML += renderPic(gif)
 }
 
 async function loadMore(){
-    let loadMoreUrl = `https://pokeapi.co/api/v2/pokemon?limit=${loadAmount}&offset=${startLoad}`;
-    loadAmount += 20;
-    let response = await fetch(loadMoreUrl)
+    startLoad += loadAmount;
+    updateUrl();
+    let response = await fetch(url)
     let translatet = await response.json();
     let everyPoke = translatet.results;
     getGermanNames(everyPoke);
