@@ -68,16 +68,23 @@ function getPokemonTypes(types, i){
     for (let indeyType = 0; indeyType < types.length; indeyType++) {
         const type = types[indeyType];
         let translated = translateType(type.type.name);      
-        pokeType.innerHTML += renderTypes(translated); 
+        pokeType.innerHTML += renderTypes(translated, i); 
     }    
     colorCard(card, types);
+    colorTypes(i, types)
 }
 
 function colorCard(card, types){
     let colorOne = pokemonColor[types[0].type.name];
     let colorTwo = types[1] ? pokemonColor[types[1].type.name] : colorOne;
-
     card.style.background = `linear-gradient(${colorOne}, ${colorTwo})`;
+}
+
+function colorTypes(i, types) {
+    let typeDiv = document.getElementById(`typeContainer${i}`)
+    let colorOne = pokemonColor[types[0].type.name];
+    let colorTwo = types[1] ? pokemonColor[types[1].type.name] : colorOne;
+    typeDiv.style.background = `${colorOne}`;
 }
 
 function translateType(type) {
@@ -98,4 +105,9 @@ async function loadMore(){
     let translatet = await response.json();
     let everyPoke = translatet.results;
     getGermanNames(everyPoke);
+}
+
+function openOverlay(i) {
+    console.log(`Das ist ${i+1}`);
+    
 }

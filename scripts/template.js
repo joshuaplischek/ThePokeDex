@@ -8,7 +8,7 @@ function printNames(germanPokemonName) {
 
 function renderMiniCradsTemplate(i) {
     return/*html*/`
-        <div class="miniPokeCard" id="miniPokeCard${i}">
+        <div onclick="openOverlay(${i})" class="miniPokeCard" id="miniPokeCard${i}">
             <div class="pokemonIds" id="pokemonContainerId${i}"></div>
             <div class="pokemon-name" id="pokemonName${i}"></div>
             <div class="type-image-container">
@@ -36,9 +36,9 @@ function renderIdTemplate(id) {
     `
 }
 
-function renderTypes(type) {
+function renderTypes(type, i) {
     return/*html*/`
-        <div class="single-type-cart">
+        <div id="typeContainer${i}" class="single-type-cart">
             <p>${type}</p>
         </div>
     `
