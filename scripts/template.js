@@ -36,9 +36,9 @@ function renderIdTemplate(id) {
     `
 }
 
-function renderTypes(type, i) {
+function renderTypes(type, i, indeyType) {
     return/*html*/`
-        <div id="typeContainer${i}" class="single-type-cart">
+        <div id="typeContainer${i}-${indeyType}" class="single-type-cart">
             <p>${type}</p>
         </div>
     `

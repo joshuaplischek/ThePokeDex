@@ -67,11 +67,12 @@ function getPokemonTypes(types, i){
     let pokeType = document.getElementById(`pokemonType${i}`);
     for (let indeyType = 0; indeyType < types.length; indeyType++) {
         const type = types[indeyType];
-        let translated = translateType(type.type.name);      
-        pokeType.innerHTML += renderTypes(translated, i); 
+        pokemonType = type.type.name;
+        let translated = translateType(pokemonType);      
+        pokeType.innerHTML += renderTypes(translated, i, indeyType);
+        colorTypes(i, indeyType, type);
     }    
     colorCard(card, types);
-    colorTypes(i, types)
 }
 
 function colorCard(card, types){
@@ -80,15 +81,18 @@ function colorCard(card, types){
     card.style.background = `linear-gradient(${colorOne}, ${colorTwo})`;
 }
 
-function colorTypes(i, types) {
-    let typeDiv = document.getElementById(`typeContainer${i}`)
-    let colorOne = pokemonColor[types[0].type.name];
-    let colorTwo = types[1] ? pokemonColor[types[1].type.name] : colorOne;
-    typeDiv.style.background = `${colorOne}`;
+function colorTypes(i, indeyType, pokemonType) {
+    let typeDiv = document.getElementById(`typeContainer${i}-${indeyType}`)
+    let colored = checkColorType(pokemonType.type.name);
+    typeDiv.style.background += colored;
 }
 
 function translateType(type) {
     return pokemonTypeTranslater[type] || type; 
+}
+
+function checkColorType(type) {
+    return pokemonColor[type]
 }
 
 async function getPokeImages(fetchGif, i) {
