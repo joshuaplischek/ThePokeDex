@@ -123,6 +123,7 @@ function openloadingOverlay() {
     let loadOverlay = document.getElementById('loadingOverlay')
     loadOverlay.style.display = `flex`;
     morebutton.style.display = `none`;
+    morebutton.style.disable = `true`;
 }
 
 function dNone() {
@@ -130,4 +131,5 @@ function dNone() {
     let loadOverlay = document.getElementById('loadingOverlay')
     loadOverlay.style.display = `none`;
     morebutton.style.display = `flex`;
+    morebutton.style.disable = `false`;
 }
