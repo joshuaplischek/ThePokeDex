@@ -1,0 +1,33 @@
+#loadingOverlay {
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    display: none; 
+    width: 100%; 
+    height: 100%; 
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2; 
+}
+
+#loadingOverlay img{
+    height: 200px;
+    width: 200px;
+    top: 50%;
+    left: 50%;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 3s linear infinite;
+  }
+  
+  /* Safari */
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }

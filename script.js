@@ -16,6 +16,7 @@ async function getAllData() {
     let response = await fetch(url)
     let translatet = await response.json();
     let everyPoke = translatet.results;
+    openloadingOverlay()
     getGermanNames(everyPoke);
 }
 
@@ -37,6 +38,7 @@ async function getGermanNames(everyPoke) {
         getPokemonTypes(typeOfPokemons, globalIndex);
         getPokeImages(fetchGif, globalIndex)
     }
+    dNone();
 }
 
 function renderCard(i) {
@@ -102,6 +104,7 @@ async function getPokeImages(fetchGif, i) {
 }
 
 async function loadMore(){
+    openloadingOverlay();
     startLoad += loadAmount;
     renderSeenPokemon();
     updateUrl();
@@ -112,6 +115,19 @@ async function loadMore(){
 }
 
 function openOverlay(i) {
-    console.log(`Das ist ${i+1}`);
-    
+    console.log(`Das ist ${i+1}`); 
+}
+
+function openloadingOverlay() {
+    let morebutton = document.getElementById('buttonContainer')
+    let loadOverlay = document.getElementById('loadingOverlay')
+    loadOverlay.style.display = `flex`;
+    morebutton.style.display = `none`;
+}
+
+function dNone() {
+    let morebutton = document.getElementById('buttonContainer')
+    let loadOverlay = document.getElementById('loadingOverlay')
+    loadOverlay.style.display = `none`;
+    morebutton.style.display = `flex`;
 }
