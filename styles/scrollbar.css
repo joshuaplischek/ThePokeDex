@@ -1,0 +1,24 @@
+/* ::-webkit-scrollbar {
+    width: 20px;
+    overflow: visible;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 4px;
+    overflow: visible;
+    
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgb(77, 146, 224); 
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-track-piece{
+    width: 3px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(66, 125, 192); 
+  } */
