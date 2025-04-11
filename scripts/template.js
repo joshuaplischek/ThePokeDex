@@ -48,11 +48,11 @@ function infoCardTemplate(i){
             <div>  <!-- oberer Container mit Bild, typ und name plus id -->
                 <div id ="nameAndTypeContainer"></div> <!-- Name und Id -->
                 <div> <!--Container mit typen und Gif -->
-                    <div></div> <!-- Typen-->
+                    <div id="pokemonInfoType"></div> <!-- Typen-->
                     <div id="pokemonGif"></div> <!-- GIF-->
                 </div>
             </div>
-            <div> <!-- unterer Container-->
+            <div class="info-area"> <!-- unterer Container-->
                 <div></div> <!-- Reiter der Katrgorien -->
                 <div> <!-- Stats bzw Infos -->
 
@@ -81,5 +81,12 @@ function renderInfoIdTemplate(id) {
 function renderGifTemplate(gif){
     return/*html*/`
         <img src="${gif}" alt="">
+    `
+}
+
+function renderInfoTypeTemplate(translated, indexType, i) {
+    return/*html*/`
+    <div id="typeInfoContainer${i}-${indexType}" class="single-info-type-cart">
+        <p>${translated}</p></div>
     `
 }

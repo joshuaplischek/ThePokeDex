@@ -15,20 +15,35 @@ async function renderInfoOverlay(i) {
 function getNamesForInfocard(pokemon) {
     let nameConatiner = document.getElementById(`nameAndTypeContainer`)
     let germanPokemonName = pokemon.names[5].name;
-    console.log(germanPokemonName)
     nameConatiner.innerHTML = renderInfoNameTemplate(germanPokemonName)
 }
 
 function getIdForInfocard(url) {
     let idConatiner = document.getElementById(`nameAndTypeContainer`)
     let IdOfPokemon = url.id;
-    console.log(IdOfPokemon)
     idConatiner.innerHTML += renderInfoIdTemplate(IdOfPokemon)
 }
 
 function getTypesForInfocard(url) {
     let typeOfPokemons = url.types;
+    let card = document.getElementById(`pokeInfoCard`);
+    let pokeType = document.getElementById(`pokemonInfoType`);
+    for (let indexType = 0; indexType < typeOfPokemons.length; indexType++) {
+        let globalInfoIndex = startLoad + indexType;
+        const type = typeOfPokemons[indexType];
+        let pokemonType = type.type.name;
+        let translated = translateType(pokemonType);      
+        pokeType.innerHTML += renderInfoTypeTemplate(translated, indexType, globalInfoIndex);
+        colorInfoTypes(indexType, type, globalInfoIndex);
+    }    
+    colorInfoCard(card, typeOfPokemons);
     console.log(typeOfPokemons)
+}
+
+function colorInfoTypes(indexType, type, globalInfoIndex) {
+    let typeInfoDiv = document.getElementById(`typeInfoContainer${globalInfoIndex}-${indexType}`)
+    let colored = checkColorType(type.type.name);
+    typeInfoDiv.style.background += colored;
 }
 
 async function getPokemonGif(i){

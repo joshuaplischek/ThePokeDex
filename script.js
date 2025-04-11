@@ -29,7 +29,7 @@ async function getGermanNames(everyPoke) {
         let speciesData = await (await fetch(pokeData.species.url)).json();
         let germanPokemonName = speciesData .names[5].name;
         let IdOfPokemon = pokeData.id;
-        let typeOfPokemons = pokeData .types;
+        let typeOfPokemons = pokeData.types;
         renderCards(globalIndex)
         getPokeDatas(germanPokemonName, IdOfPokemon, typeOfPokemons, fetchPng, globalIndex);
     }
@@ -80,7 +80,7 @@ function getPokemonTypes(types, i){
     let pokeType = document.getElementById(`pokemonType${i}`);
     for (let indeyType = 0; indeyType < types.length; indeyType++) {
         const type = types[indeyType];
-        pokemonType = type.type.name;
+        let pokemonType = type.type.name;
         let translated = translateType(pokemonType);      
         pokeType.innerHTML += renderTypes(translated, i, indeyType);
         colorTypes(i, indeyType, type);
@@ -141,7 +141,6 @@ function dNone() {
 
 function openPokemonOverlay(i){
     let infoOverlay = document.getElementById(`pokemonInfoOverlay`)
-    console.log(`Das ist ${i+1}`);
     infoOverlay.style.display = `flex`;
     document.body.style.overflowY = `hidden`;
     renderInfoOverlay(i);
