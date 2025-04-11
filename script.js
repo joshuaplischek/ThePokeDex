@@ -23,28 +23,39 @@ async function getAllData() {
 async function getGermanNames(everyPoke) {
     for (let i = 0; i < everyPoke.length; i++) {
         let globalIndex = startLoad + i;
-        let gifUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${globalIndex+1}.png`
-        let fetchGif = await fetch(gifUrl);
-        let pokeUrlFetch = await fetch(everyPoke[i].url);
-        let pokeFetchToJason = await pokeUrlFetch.json();
-        let pokeSpeciesFetch = await fetch(pokeFetchToJason.species.url);
-        let pokeSpeciesFetchToJason = await pokeSpeciesFetch.json();
-        let germanPokemonName = pokeSpeciesFetchToJason.names[5].name;
-        let IdOfPokemon = pokeFetchToJason.id;
-        let typeOfPokemons = pokeFetchToJason.types;
-        renderCard(globalIndex);
-        printGermanPokeName(germanPokemonName, globalIndex);
-        getPokeId(IdOfPokemon, globalIndex);
-        getPokemonTypes(typeOfPokemons, globalIndex);
-        getPokeImages(fetchGif, globalIndex)
+        let pngUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${globalIndex+1}.png`
+        let fetchPng = await fetch(pngUrl);
+        let pokeData = await (await fetch(everyPoke[i].url)).json();
+        let speciesData = await (await fetch(pokeData.species.url)).json();
+        let germanPokemonName = speciesData .names[5].name;
+        let IdOfPokemon = pokeData.id;
+        let typeOfPokemons = pokeData .types;
+        renderCards(globalIndex)
+        getPokeDatas(germanPokemonName, IdOfPokemon, typeOfPokemons, fetchPng, globalIndex);
     }
     dNone();
+}
+
+function renderCards(globalIndex) {
+    renderCard(globalIndex);
+}
+
+function getPokeDatas(germanPokemonName, IdOfPokemon, typeOfPokemons, fetchPng, globalIndex) {
+    printGermanPokeName(germanPokemonName, globalIndex);
+    getPokeId(IdOfPokemon, globalIndex);
+    getPokemonTypes(typeOfPokemons, globalIndex);
+    getPokeImages(fetchPng, globalIndex)
 }
 
 function renderCard(i) {
     let contentRef = document.getElementById('content');
     contentRef.innerHTML += renderMiniCradsTemplate(i);
     renderSeenPokemon();
+}
+
+function renderInfoCard(i) {
+    let infoOverlay = document.getElementById(`pokemonInfoOverlay`)
+    infoOverlay.innerHTML = infoCardTemplate(i);
 }
 
 function renderSeenPokemon() {
@@ -97,10 +108,10 @@ function checkColorType(type) {
     return pokemonColor[type]
 }
 
-async function getPokeImages(fetchGif, i) {
+async function getPokeImages(fetchPng, i) {
     let pokeGif = document.getElementById(`pokemonImg${i}`)
-    let gif = fetchGif.url;
-    pokeGif.innerHTML += renderPic(gif)
+    let png = fetchPng.url;
+    pokeGif.innerHTML += renderPic(png)
 }
 
 async function loadMore(){
@@ -114,16 +125,11 @@ async function loadMore(){
     getGermanNames(everyPoke);
 }
 
-function openOverlay(i) {
-    console.log(`Das ist ${i+1}`); 
-}
-
 function openloadingOverlay() {
     let morebutton = document.getElementById('buttonContainer')
     let loadOverlay = document.getElementById('loadingOverlay')
     loadOverlay.style.display = `flex`;
     morebutton.style.display = `none`;
-    morebutton.style.disable = `true`;
 }
 
 function dNone() {
@@ -131,5 +137,18 @@ function dNone() {
     let loadOverlay = document.getElementById('loadingOverlay')
     loadOverlay.style.display = `none`;
     morebutton.style.display = `flex`;
-    morebutton.style.disable = `false`;
+}
+
+function openPokemonOverlay(i){
+    let infoOverlay = document.getElementById(`pokemonInfoOverlay`)
+    console.log(`Das ist ${i+1}`);
+    infoOverlay.style.display = `flex`;
+    document.body.style.overflowY = `hidden`;
+    renderInfoOverlay(i);
+}
+
+function closeinfoOverlay() {
+    let infoOverlay = document.getElementById('pokemonInfoOverlay')
+    infoOverlay.style.display = `none`;
+    document.body.style.overflowY = `visible`;
 }

@@ -13,9 +13,11 @@
     <link rel="stylesheet" href="./styles/footer.css">
     <link rel="stylesheet" href="./styles/loading-spinner.css">
     <link rel="stylesheet" href="./styles/scrollbar.css">
+    <link rel="stylesheet" href="./styles/pokemon-overlay.css">
     <script src="./scripts/colors.js"></script>
     <script src="./scripts/translateer.js"></script>
     <script src="./script.js"></script>
+    <script src="./scripts/infoCards.js"></script>
     <script src="./scripts/template.js"></script>
 </head>
 <body onload="init()">
@@ -47,6 +49,9 @@
         <button class="load-more-button" onclick="loadMore()">mehr</button>
     </div>
     <div id="loadingOverlay"><img src="./assets/img/pokeIdsymb.png" alt=""></div>
+    <div onclick="closeinfoOverlay()" id="pokemonInfoOverlay">
+        
+    </div>
     <!-- <footer>
         <div class="footer-box"></div>
     </footer> -->
