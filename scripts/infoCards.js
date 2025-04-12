@@ -1,3 +1,5 @@
+let about = [];
+
 async function renderInfoOverlay(i) {
     let infoOverlay = document.getElementById(`pokemonInfoOverlay`)
     infoOverlay.innerHTML= "";
@@ -40,21 +42,36 @@ function getTypesForInfocard(url) {
 }
 
 function getPokemonData(url, i, speciesData) {
-    getAbout(url, i, speciesData);
-    getStats(url, i);
-    // getGenders();
+    getAbout(url, speciesData);
+    getStats(url);
+    getGenders(speciesData);
     // getEvolutions();
 }
 
-async function getAbout(url, i, speciesData){
+async function getAbout(url, speciesData){
+    about.splice(0,6)
     let statsSection = document.getElementById(`statsArea`);
-    let pokeWeight = url[weight];
-    console.log(pokeWeight);
-    console.log(speciesData);
     statsSection.innerHTML = "";
+    let pokeWeight = { name: 'Gewicht', value: url.weight / 10 + " kg"};
+    let pokeSpecies = { name: 'Art', value: speciesData.genera[4].genus};
+    let pokeheight = { name: 'Größe', value: url.height / 10 + " m"};
+    let pokeXp = { name: 'Basis Erfahrung', value: url.base_experience +" xp"};
+    let pokeCaptureRate = { name: 'Fangrate', value: speciesData.capture_rate};
+    let pokeHappiness = { name: 'Basis Freundschaft', value: speciesData.base_happiness};
+    about.push(pokeSpecies , pokeheight, pokeWeight, pokeXp, pokeHappiness, pokeCaptureRate )
+    renderAbout()
+    
 }
 
-async function getStats(url, i){
+function renderAbout(){
+    let statsSection = document.getElementById(`aboutArea`);
+    for (let indexAbout = 0; indexAbout < about.length; indexAbout++) {
+        const pokeAbout = about[indexAbout];
+        statsSection.innerHTML += renerAboutTemplate(pokeAbout)
+    }
+}
+
+async function getStats(url){
     let allStats = url.stats;
     let statsSection = document.getElementById(`statsArea`)
     statsSection.innerHTML = "";
@@ -63,9 +80,25 @@ async function getStats(url, i){
         let statsUrl = await ((await fetch(stats.stat.url)).json());
         let germanStats = statsUrl.names[4].name;
         let baseStats = stats.base_stat;
-        console.log(germanStats);
         statsSection.innerHTML += renderStatsTemplate(germanStats, baseStats);
     }
+}
+
+function getGenders(url) {
+    let genderPie = document.getElementById('gendersArea')
+    genderPie.innerHTML = "";
+    let genderrate = url.gender_rate;
+    let femaleInPercent = genderrate / 8 * 100
+    let maleInpercent = 100 - femaleInPercent
+    if (genderrate === -1) {
+        genderPie.innerHTML = renderNeutralGenderTemplate();
+        let pieDia = document.getElementById('pie')
+        pieDia.style.backgroundColor= `gray`;
+    } else{
+        genderPie.innerHTML = renderGenderTemplate(maleInpercent, femaleInPercent)
+        let pieDia = document.getElementById('pie')
+        pieDia.style.backgroundImage= `conic-gradient(rgb(175, 209, 253) ${maleInpercent}%, #FFC0CB ${femaleInPercent}%)`;
+    }  
 }
 
 function colorInfoTypes(indexType, type, globalInfoIndex) {

@@ -147,6 +147,38 @@
 
 .stats-infos{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     gap: 25px;
+}
+
+#aboutArea{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#aboutTab{
+    background-color: rgb(221, 220, 220);
+}
+
+.about-infos{
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+    width: 340px;
+}
+
+#gendersArea{
+    display: none;
+}
+
+#pie {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%
+}
+
+.gernder-percents{
+    display: flex;
+    justify-content: space-evenly;
 }

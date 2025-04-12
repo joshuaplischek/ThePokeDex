@@ -108,3 +108,35 @@ function renderStatsTemplate(germanStats, baseStats) {
         </div>
     `
 }
+
+function renerAboutTemplate(i){
+    return/*html*/`
+    <div class="about-infos">
+        <div><p>${i.name}</p></div>
+        <div><p>${i.value}</p></div>
+    </div>
+    `
+}
+
+function renderGenderTemplate(m, f) {
+    return/*html*/`
+    <div class="gender-infos">
+        <div class="gernder-percents">
+            <p>Männlich: ${m}%</p>
+            <p>Weiblich: ${f}%</p>
+        </div>
+        <div id="pie"></div>
+    </div>
+    `    
+}
+
+function renderNeutralGenderTemplate(){
+    return/*html*/`
+    <div class="gender-infos">
+        <div class="gernder-percents">
+            <p>Neutral</p>
+        </div>
+        <div id="pie"></div>
+    </div>
+    `    
+}
