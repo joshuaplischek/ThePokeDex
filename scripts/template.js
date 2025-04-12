@@ -118,12 +118,12 @@ function renerAboutTemplate(i){
     `
 }
 
-function renderGenderTemplate(m, f) {
+function renderGenderTemplate(f, m) {
     return/*html*/`
     <div class="gender-infos">
         <div class="gernder-percents">
-            <p>Männlich: ${m}%</p>
             <p>Weiblich: ${f}%</p>
+            <p>Männlich: ${m}%</p>
         </div>
         <div id="pie"></div>
     </div>

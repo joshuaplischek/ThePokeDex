@@ -95,7 +95,7 @@ function getGenders(url) {
         let pieDia = document.getElementById('pie')
         pieDia.style.backgroundColor= `gray`;
     } else{
-        genderPie.innerHTML = renderGenderTemplate(maleInpercent, femaleInPercent)
+        genderPie.innerHTML = renderGenderTemplate(femaleInPercent, maleInpercent)
         let pieDia = document.getElementById('pie')
         pieDia.style.backgroundImage= `conic-gradient(rgb(175, 209, 253) ${maleInpercent}%, #FFC0CB ${femaleInPercent}%)`;
     }  
