@@ -9,7 +9,7 @@ async function renderInfoOverlay(i) {
     getIdForInfocard(fetchInfoUrl);
     getTypesForInfocard(fetchInfoUrl);
     getPokemonGif(i);
-    getPokemonData(fetchInfoUrl, i);
+    getPokemonData(fetchInfoUrl, i, speciesData);
 }
 
 function getNamesForInfocard(pokemon) {
@@ -39,15 +39,18 @@ function getTypesForInfocard(url) {
     colorInfoCard(card, typeOfPokemons);
 }
 
-function getPokemonData(url, i) {
-    // getAbout(url, i);
+function getPokemonData(url, i, speciesData) {
+    getAbout(url, i, speciesData);
     getStats(url, i);
     // getGenders();
     // getEvolutions();
 }
 
-async function getAbout(url, i){
-    let statsSection = document.getElementById(`statsArea`)
+async function getAbout(url, i, speciesData){
+    let statsSection = document.getElementById(`statsArea`);
+    let pokeWeight = url[weight];
+    console.log(pokeWeight);
+    console.log(speciesData);
     statsSection.innerHTML = "";
 }
 
