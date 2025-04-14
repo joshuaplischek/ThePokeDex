@@ -8,7 +8,16 @@ let url = `https://pokeapi.co/api/v2/pokemon?limit=${loadAmount}&offset=${startL
 
 function init() {
     getAllData();
+    document.getElementById('search-input').addEventListener('input', function(event) {
+        const query = event.target.value.trim();
+        if (query.length >= 3) {
+            searchInRenderedPokemon(query);
+        } else {
+            document.querySelectorAll('.pokemon-card').forEach(card => card.style.display = '');
+        }
+    });
 }
+
 
 function updateUrl() {
     url = `https://pokeapi.co/api/v2/pokemon?limit=${loadAmount}&offset=${startLoad}`;
@@ -157,3 +166,20 @@ function closeinfoOverlay() {
     infoOverlay.style.display = `none`;
     document.body.style.overflowY = `visible`;
 }
+
+function searchInRenderedPokemon(query) {
+    const cards = document.querySelectorAll('.pokemon-card');
+    cards.forEach(card => {
+        const nameElement = card.querySelector('.pokemon-name');
+        if (!nameElement) return;
+
+        const name = nameElement.textContent.toLowerCase();
+        if (name.includes(query.toLowerCase())) {
+            card.style.display = ''; // Zeige Karte
+        } else {
+            card.style.display = 'none'; // Verstecke Karte
+        }
+    });
+}
+
+

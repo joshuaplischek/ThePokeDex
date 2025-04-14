@@ -32,3 +32,24 @@
     box-shadow: 2px 2px 10px 2px rgba(0, 0, 0, 0.395);
 }
 
+#suggestions-container {
+    position: absolute;
+    top: 120px; /* Position unterhalb des Eingabefeldes */
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Sicherstellen, dass die Vorschläge über anderen Elementen erscheinen */
+}
+
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background-color: #f0f0f0;
+}
+

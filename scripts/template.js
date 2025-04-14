@@ -1,6 +1,6 @@
 function renderMiniCradsTemplate(i) {
     return/*html*/`
-        <div onclick="openPokemonOverlay(${i})" class="miniPokeCard" id="miniPokeCard${i}">
+        <div onclick="openPokemonOverlay(${i})" class="miniPokeCard pokemon-card" id="miniPokeCard${i}">
             <div class="pokemonIds" id="pokemonContainerId${i}"></div>
             <div class="pokemon-name" id="pokemonName${i}"></div>
             <div class="type-image-container">
