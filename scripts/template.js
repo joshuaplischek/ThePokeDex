@@ -47,20 +47,20 @@ function infoCardTemplate(i){
     const rightDisabled = i >= totalPokemonCount - 1 ? 'disabled' : '';
     return/*html*/`
         <div class="pokemon-info-container" id="pokeInfoCard" onclick="cannotClickThePopUp(event)">
-            <div class="pokemon">  <!-- oberer Container mit Bild, typ und name plus id -->
-                <div id ="nameAndTypeContainer"></div> <!-- Name und Id -->
-                <div> <!--Container mit typen und Gif -->
-                    <div id="pokemonInfoType"></div> <!-- Typen-->
-                    <div id="pokemonGif"></div> <!-- GIF-->
+            <div class="pokemon">
+                <div id ="nameAndTypeContainer"></div>
+                <div>
+                    <div id="pokemonInfoType"></div>
+                    <div id="pokemonGif"></div>
                 </div>
             </div>
-            <div class="info-area"> <!-- unterer Container-->
-                <div class="tabs"><!-- Reiter der Katrgorien -->
+            <div class="info-area">
+                <div class="tabs">
                     <div id="aboutTab" onclick="displayAbout()" class="single-tab"><p>Über</p></div>
                     <div id="statsTab" onclick="displayStats()" class="single-tab"><p>Werte</p></div>
                     <div id="genderTab" onclick="displayGenders()" class="single-tab"><p>Geschlecht</p></div>
                 </div>
-                <div> <!-- Stats bzw Infos -->
+                <div>
                     <div id="aboutArea"></div>
                     <div id="statsArea"></div>
                     <div id="gendersArea"></div>

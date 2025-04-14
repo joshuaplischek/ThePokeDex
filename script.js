@@ -175,9 +175,9 @@ function searchInRenderedPokemon(query) {
 
         const name = nameElement.textContent.toLowerCase();
         if (name.includes(query.toLowerCase())) {
-            card.style.display = ''; // Zeige Karte
+            card.style.display = '';
         } else {
-            card.style.display = 'none'; // Verstecke Karte
+            card.style.display = 'none';
         }
     });
 }

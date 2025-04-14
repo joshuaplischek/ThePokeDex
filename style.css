@@ -34,14 +34,14 @@
 
 #suggestions-container {
     position: absolute;
-    top: 120px; /* Position unterhalb des Eingabefeldes */
+    top: 120px;
     width: 100%;
     max-height: 200px;
     overflow-y: auto;
     background-color: white;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    z-index: 1000; /* Sicherstellen, dass die Vorschläge über anderen Elementen erscheinen */
+    z-index: 1000;
 }
 
 .suggestion-item {
