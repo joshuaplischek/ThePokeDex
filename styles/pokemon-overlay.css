@@ -12,14 +12,6 @@
     z-index: 2; 
 }
 
-.backround-image{
-    height: 200px;
-    z-index: 0;
-    position: absolute;
-    top: 200px;
-    visibility: hidden;
-}
-
 .pokemon-info-container{
     display: flex;
     flex-direction: column;
@@ -209,4 +201,38 @@
     background-color: #ccc;
     cursor: not-allowed;
     opacity: 0.6;
+}
+
+@media(max-width: 420px){
+    .about-infos{
+        width: 260px;
+    }
+
+    #statsArea{
+        width: 260px;
+    }
+    
+    .info-area{
+        width: 290px;
+        border-radius: 15px;
+    }
+    
+    #pokemonInfoType{
+        width: 280px;
+    }
+    
+    .pokemon-info-container{
+        width: 300px;
+    }
+
+    #nameAndTypeContainer{
+        width: 280px;
+        padding: 0;
+        margin: 0;
+        justify-content: space-evenly;
+    }
+
+    .pokemon{
+        width: 300px;
+    }
 }

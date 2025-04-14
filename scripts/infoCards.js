@@ -47,7 +47,6 @@ function getPokemonData(url, i, speciesData) {
     getAbout(url, speciesData);
     getStats(url);
     getGenders(speciesData);
-    // getEvolutions();
 }
 
 async function getAbout(url, speciesData){
@@ -132,23 +131,18 @@ function displayAbout() {
     let aboutSection = document.getElementById(`aboutArea`);
     let statsSection = document.getElementById(`statsArea`);
     let genderSection = document.getElementById(`gendersArea`);
-    let evoSection = document.getElementById(`evolutionsArea`);
     aboutSection.style.display =`Block`;
     statsSection.style.display =`none`;
     genderSection.style.display =`none`;
-    evoSection.style.display =`none`;
-
 }
 
 function colorAbout(){
     let markTab = document.getElementById(`aboutTab`);
     let fristtTab = document.getElementById(`statsTab`);
     let thirdTab = document.getElementById(`genderTab`);
-    let fouthTab = document.getElementById(`evolutionsTab`);
     markTab.style.backgroundColor =`rgb(221, 220, 220)`;
     fristtTab.style.backgroundColor =`white`;
     thirdTab.style.backgroundColor =`white`;
-    fouthTab.style.backgroundColor =`white`;
 }
 
 function displayStats() {
@@ -156,23 +150,18 @@ function displayStats() {
     let aboutSection = document.getElementById(`aboutArea`);
     let statsSection = document.getElementById(`statsArea`);
     let genderSection = document.getElementById(`gendersArea`);
-    let evoSection = document.getElementById(`evolutionsArea`);
     aboutSection.style.display =`none`;
     statsSection.style.display =`Block`;
     genderSection.style.display =`none`;
-    evoSection.style.display =`none`;
-
 }
 
 function colorStats(){
     let markTab = document.getElementById(`statsTab`);
     let fristtTab = document.getElementById(`aboutTab`);
     let thirdTab = document.getElementById(`genderTab`);
-    let fouthTab = document.getElementById(`evolutionsTab`);
     markTab.style.backgroundColor =`rgb(221, 220, 220)`;
     fristtTab.style.backgroundColor =`white`;
     thirdTab.style.backgroundColor =`white`;
-    fouthTab.style.backgroundColor =`white`;
 }
 
 function displayGenders() {
@@ -180,23 +169,18 @@ function displayGenders() {
     let aboutSection = document.getElementById(`aboutArea`);
     let statsSection = document.getElementById(`statsArea`);
     let genderSection = document.getElementById(`gendersArea`);
-    let evoSection = document.getElementById(`evolutionsArea`);
     aboutSection.style.display =`none`;
     statsSection.style.display =`none`;
     genderSection.style.display =`Block`;
-    evoSection.style.display =`none`;
-
 }
 
 function colorGenders(){
     let markTab = document.getElementById(`genderTab`);
     let fristtTab = document.getElementById(`aboutTab`);
     let thirdTab = document.getElementById(`statsTab`);
-    let fouthTab = document.getElementById(`evolutionsTab`);
     markTab.style.backgroundColor =`rgb(221, 220, 220)`;
     fristtTab.style.backgroundColor =`white`;
     thirdTab.style.backgroundColor =`white`;
-    fouthTab.style.backgroundColor =`white`;
 }
 
 function displayEvolutions() {
@@ -204,23 +188,19 @@ function displayEvolutions() {
     let aboutSection = document.getElementById(`aboutArea`);
     let statsSection = document.getElementById(`statsArea`);
     let genderSection = document.getElementById(`gendersArea`);
-    let evoSection = document.getElementById(`evolutionsArea`);
     aboutSection.style.display =`none`;
     statsSection.style.display =`none`;
     genderSection.style.display =`none`;
-    evoSection.style.display =`Block`;
 
 }
 
 function colorEvolutions(){
-    let markTab = document.getElementById(`evolutionsTab`);
     let fristtTab = document.getElementById(`aboutTab`);
     let thirdTab = document.getElementById(`genderTab`);
     let fouthTab = document.getElementById(`statsTab`);
     markTab.style.backgroundColor =`rgb(221, 220, 220)`;
     fristtTab.style.backgroundColor =`white`;
     thirdTab.style.backgroundColor =`white`;
-    fouthTab.style.backgroundColor =`white`;
 }
 
 function navigateInfo(index) {
