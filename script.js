@@ -1,4 +1,4 @@
-let loadAmount = 20;
+let loadAmount = 60;
 
 const MAX_POKEMON_ID = 493;
 
