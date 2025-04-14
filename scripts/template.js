@@ -66,8 +66,8 @@ function infoCardTemplate(i){
                     <div id="gendersArea"></div>
                 </div>
                 <div class="navigation-bar">
-                    <img onclick="navigateInfo(${i - 1})" class="nav-button" ${leftDisabled} src="../assets/img/arrow-left.png" alt="">
-                    <img onclick="navigateInfo(${i + 1})" class="nav-button" ${rightDisabled} src="../assets/img/arrow-right.png" alt="">
+                    <img onclick="navigateInfo(${i - 1})" class="nav-button left-button" ${leftDisabled} src="../assets/img/arrow-left.png" alt="">
+                    <img onclick="navigateInfo(${i + 1})" class="nav-button right-button" ${rightDisabled} src="../assets/img/arrow-right.png" alt="">
                 </div>
             </div>
         </div>

@@ -181,10 +181,11 @@
 }
 
 .navigation-bar{
+    position: relative;
     width: 300px;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 .navigation-bar img{
@@ -201,6 +202,16 @@
     background-color: #ccc;
     cursor: not-allowed;
     opacity: 0.6;
+}
+
+.left-button{
+    position: relative;
+    left: 70px;
+}
+
+.right-button{
+    position: relative;
+    right: 70px;
 }
 
 @media(max-width: 420px){

@@ -1,13 +1,18 @@
-let loadAmount = 60;
-
+let loadAmount = 20;
 const MAX_POKEMON_ID = 493;
-
 let startLoad = 0;
-
 let url = `https://pokeapi.co/api/v2/pokemon?limit=${loadAmount}&offset=${startLoad}`;
 
 function init() {
     getAllData();
+    addEventListener()
+}
+
+function updateUrl() {
+    url = `https://pokeapi.co/api/v2/pokemon?limit=${loadAmount}&offset=${startLoad}`;
+}
+
+function addEventListener(){
     document.getElementById('search-input').addEventListener('input', function(event) {
         const query = event.target.value.trim();
         if (query.length >= 3) {
@@ -16,11 +21,6 @@ function init() {
             document.querySelectorAll('.pokemon-card').forEach(card => card.style.display = '');
         }
     });
-}
-
-
-function updateUrl() {
-    url = `https://pokeapi.co/api/v2/pokemon?limit=${loadAmount}&offset=${startLoad}`;
 }
 
 async function getAllData() {
