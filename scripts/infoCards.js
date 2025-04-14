@@ -1,5 +1,7 @@
 let about = [];
 
+let totalPokemonCount = 493;
+
 async function renderInfoOverlay(i) {
     let infoOverlay = document.getElementById(`pokemonInfoOverlay`)
     infoOverlay.innerHTML= "";
@@ -219,4 +221,10 @@ function colorEvolutions(){
     fristtTab.style.backgroundColor =`white`;
     thirdTab.style.backgroundColor =`white`;
     fouthTab.style.backgroundColor =`white`;
+}
+
+function navigateInfo(index) {
+    if (index >= 0 && index < totalPokemonCount) {
+        renderInfoOverlay(index);
+    }
 }

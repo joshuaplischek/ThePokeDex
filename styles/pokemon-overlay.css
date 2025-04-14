@@ -173,12 +173,40 @@
 }
 
 #pie {
-    width: 250px;
-    height: 250px;
+    width: 245px;
+    height: 245px;
     border-radius: 50%
 }
 
 .gernder-percents{
     display: flex;
     justify-content: space-evenly;
+    margin-top: 1px;
+}
+
+.gernder-percents p{
+    margin-top: 0;
+}
+
+.navigation-bar{
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.navigation-bar img{
+    height: 24px;
+    width: auto;
+}
+
+.navigation-bar img:hover{
+    cursor: pointer;
+    height: 26px;
+}
+
+.nav-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    opacity: 0.6;
 }

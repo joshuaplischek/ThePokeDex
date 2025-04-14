@@ -1,5 +1,7 @@
 let loadAmount = 20;
 
+const MAX_POKEMON_ID = 493;
+
 let startLoad = 0;
 
 let url = `https://pokeapi.co/api/v2/pokemon?limit=${loadAmount}&offset=${startLoad}`;
@@ -21,6 +23,7 @@ async function getAllData() {
 }
 
 async function getGermanNames(everyPoke) {
+    everyPoke = everyPoke.filter((_, index) => startLoad + index + 1 <= MAX_POKEMON_ID);
     for (let i = 0; i < everyPoke.length; i++) {
         let globalIndex = startLoad + i;
         let pngUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${globalIndex+1}.png`
@@ -32,6 +35,9 @@ async function getGermanNames(everyPoke) {
         let typeOfPokemons = pokeData.types;
         renderCards(globalIndex)
         getPokeDatas(germanPokemonName, IdOfPokemon, typeOfPokemons, fetchPng, globalIndex);
+    }
+    if (startLoad + loadAmount >= MAX_POKEMON_ID) {
+        document.getElementById('buttonContainer').style.display = 'none';
     }
     dNone();
 }

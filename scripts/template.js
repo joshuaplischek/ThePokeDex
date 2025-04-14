@@ -43,6 +43,8 @@ function renderPic(png) {
 }
 
 function infoCardTemplate(i){
+    const leftDisabled = i <= 0 ? 'disabled' : '';
+    const rightDisabled = i >= totalPokemonCount - 1 ? 'disabled' : '';
     return/*html*/`
         <div class="pokemon-info-container" id="pokeInfoCard" onclick="cannotClickThePopUp(event)">
             <div>  <!-- oberer Container mit Bild, typ und name plus id -->
@@ -65,7 +67,10 @@ function infoCardTemplate(i){
                     <div id="gendersArea"></div>
                     <div id="evolutionsArea"></div>
                 </div>
-                <div></div> <!-- navigation -->
+                <div class="navigation-bar">
+                    <img onclick="navigateInfo(${i - 1})" class="nav-button" ${leftDisabled} src="../assets/img/arrow-left.png" alt="">
+                    <img onclick="navigateInfo(${i + 1})" class="nav-button" ${rightDisabled} src="../assets/img/arrow-right.png" alt="">
+                </div>
             </div>
             <img class="backround-image" src="../assets/img/pokeIdsymb.png" alt="">
         </div>
