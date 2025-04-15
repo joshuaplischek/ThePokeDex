@@ -33,8 +33,8 @@ async function getAllData() {
 }
 
 async function getGermanNames(everyPoke) {
-    everyPoke = everyPoke.filter((_, index) => startLoad + index + 1 <= MAX_POKEMON_ID);
-    for (let i = startRendering; i < everyPoke.length; i++) {
+    // everyPoke = everyPoke.filter((_, index) => startLoad + index + 1 <= MAX_POKEMON_ID);
+    for (let i = 0; i < everyPoke.length; i++) {
         let globalIndex = startLoad + i;
         let pngUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${globalIndex+1}.png`
         let fetchPng = await fetch(pngUrl);
@@ -50,7 +50,6 @@ async function getGermanNames(everyPoke) {
         document.getElementById('buttonContainer').style.display = 'none';
     }
     dNone();
-    startRendering + 20;
 }
 
 function renderCards(globalIndex) {
