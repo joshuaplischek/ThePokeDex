@@ -11,7 +11,7 @@ async function renderInfoOverlay(i) {
     infoOverlay.innerHTML = infoCardTemplate(i);
     getNamesForInfocard(speciesData);
     getIdForInfocard(fetchInfoUrl);
-    getTypesForInfocard(fetchInfoUrl);
+    getTypesForInfocard(fetchInfoUrl, i);
     getPokemonGif(i);
     getPokemonData(fetchInfoUrl, i, speciesData);
 }
@@ -28,7 +28,7 @@ function getIdForInfocard(url) {
     idConatiner.innerHTML += renderInfoIdTemplate(IdOfPokemon)
 }
 
-function getTypesForInfocard(url) {
+function getTypesForInfocard(url, index) {
     let typeOfPokemons = url.types;
     let card = document.getElementById(`pokeInfoCard`);
     let pokeType = document.getElementById(`pokemonInfoType`);
@@ -38,9 +38,23 @@ function getTypesForInfocard(url) {
         let pokemonType = type.type.name;
         let translated = translateType(pokemonType);      
         pokeType.innerHTML += renderInfoTypeTemplate(translated, indexType, globalInfoIndex);
+        checkNavigationPosition(index)
         colorInfoTypes(indexType, type, globalInfoIndex);
     }    
     colorInfoCard(card, typeOfPokemons);
+}
+
+function checkNavigationPosition(index) {
+    if(index == 0){
+        let disabledButton = document.getElementById(`leftButton`);
+        disabledButton.style.opacity = "0.2"
+        disabledButton.disabled = true;
+    }
+    if (index == totalPokemonCount) {
+        let disabledButton = document.getElementById(`rightButton`);
+        disabledButton.style.opacity = "0.2"
+        disabledButton.disabled = true;
+    }
 }
 
 function getPokemonData(url, i, speciesData) {
