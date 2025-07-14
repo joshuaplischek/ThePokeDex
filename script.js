@@ -1,8 +1,8 @@
 let loadAmount = 20;
 const MAX_POKEMON_ID = 493;
 let startLoad = 0;
-let startRendering = 0;
 let url = `https://pokeapi.co/api/v2/pokemon?limit=${loadAmount}&offset=${startLoad}`;
+let pokemonDatas = []; // Hier werden die Daten gespeichert
 
 function init() {
     getAllData();
@@ -25,53 +25,61 @@ function addEventListener(){
 }
 
 async function getAllData() {
-    let response = await fetch(url)
+    openloadingOverlay();
+    let response = await fetch(url);
     let translatet = await response.json();
     let everyPoke = translatet.results;
-    openloadingOverlay()
-    getGermanNames(everyPoke);
-}
-
-async function getGermanNames(everyPoke) {
-    // everyPoke = everyPoke.filter((_, index) => startLoad + index + 1 <= MAX_POKEMON_ID);
-    for (let i = 0; i < everyPoke.length; i++) {
-        let globalIndex = startLoad + i;
-        let pngUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${globalIndex+1}.png`
-        let fetchPng = await fetch(pngUrl);
-        let pokeData = await (await fetch(everyPoke[i].url)).json();
-        let speciesData = await (await fetch(pokeData.species.url)).json();
-        let germanPokemonName = speciesData .names[5].name;
-        let IdOfPokemon = pokeData.id;
-        let typeOfPokemons = pokeData.types;
-        renderCards(globalIndex)
-        getPokeDatas(germanPokemonName, IdOfPokemon, typeOfPokemons, fetchPng, globalIndex);
-    }
+    await fetchAndStorePokemonData(everyPoke);
+    renderAllCardsFromArray();
     if (startLoad + loadAmount >= MAX_POKEMON_ID) {
         document.getElementById('buttonContainer').style.display = 'none';
     }
     dNone();
 }
 
-function renderCards(globalIndex) {
-    renderCard(globalIndex);
+async function fetchAndStorePokemonData(everyPoke) {
+    for (let i = 0; i < everyPoke.length; i++) {
+        let globalIndex = startLoad + i;
+        let pngUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${globalIndex+1}.png`;
+        let fetchPng = await fetch(pngUrl);
+        let pokeData = await (await fetch(everyPoke[i].url)).json();
+        let speciesData = await (await fetch(pokeData.species.url)).json();
+        let germanPokemonName = speciesData.names[5].name;
+        let IdOfPokemon = pokeData.id;
+        let typeOfPokemons = pokeData.types;
+        // Daten ins Array pushen
+        pokemonDatas.push({
+            globalIndex,
+            germanPokemonName,
+            IdOfPokemon,
+            typeOfPokemons,
+            pngUrl: fetchPng.url
+        });
+    }
 }
 
-function getPokeDatas(germanPokemonName, IdOfPokemon, typeOfPokemons, fetchPng, globalIndex) {
-    printGermanPokeName(germanPokemonName, globalIndex);
-    getPokeId(IdOfPokemon, globalIndex);
-    getPokemonTypes(typeOfPokemons, globalIndex);
-    getPokeImages(fetchPng, globalIndex)
-}
-
-function renderCard(i) {
+function renderAllCardsFromArray() {
     let contentRef = document.getElementById('content');
-    contentRef.innerHTML += renderMiniCradsTemplate(i);
+    contentRef.innerHTML = ""; // Vorherige Karten entfernen
+    for (let i = 0; i < pokemonDatas.length; i++) {
+        renderCardFromArray(i);
+    }
     renderSeenPokemon();
 }
 
-function renderInfoCard(i) {
-    let infoOverlay = document.getElementById(`pokemonInfoOverlay`)
-    infoOverlay.innerHTML = infoCardTemplate(i);
+function renderCardFromArray(i) {
+    let contentRef = document.getElementById('content');
+    contentRef.innerHTML += renderMiniCradsTemplate(i);
+    let poke = pokemonDatas[i];
+    printGermanPokeName(poke.germanPokemonName, poke.globalIndex);
+    getPokeId(poke.IdOfPokemon, poke.globalIndex);
+    getPokemonTypes(poke.typeOfPokemons, poke.globalIndex);
+    setPokeImage(poke.pngUrl, poke.globalIndex);
+}
+
+function setPokeImage(pngUrl, i) {
+    let pokeGif = document.getElementById(`pokemonImg${i}`);
+    pokeGif.innerHTML += renderPic(pngUrl);
 }
 
 function renderSeenPokemon() {
@@ -124,21 +132,20 @@ function checkColorType(type) {
     return pokemonColor[type]
 }
 
-async function getPokeImages(fetchPng, i) {
-    let pokeGif = document.getElementById(`pokemonImg${i}`)
-    let png = fetchPng.url;
-    pokeGif.innerHTML += renderPic(png)
-}
-
 async function loadMore(){
     openloadingOverlay();
     startLoad += loadAmount;
     renderSeenPokemon();
     updateUrl();
-    let response = await fetch(url)
+    let response = await fetch(url);
     let translatet = await response.json();
     let everyPoke = translatet.results;
-    getGermanNames(everyPoke);
+    await fetchAndStorePokemonData(everyPoke);
+    renderAllCardsFromArray();
+    if (startLoad + loadAmount >= MAX_POKEMON_ID) {
+        document.getElementById('buttonContainer').style.display = 'none';
+    }
+    dNone();
 }
 
 function openloadingOverlay() {
