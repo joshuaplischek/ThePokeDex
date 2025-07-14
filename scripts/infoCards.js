@@ -3,11 +3,13 @@ let about = [];
 let totalPokemonCount = 493;
 
 async function renderInfoOverlay(i) {
-    let infoOverlay = document.getElementById(`pokemonInfoOverlay`)
-    infoOverlay.innerHTML= "";
-    let infoUrl = `https://pokeapi.co/api/v2/pokemon/${i+1}`
+    let infoOverlay = document.getElementById(`pokemonInfoOverlay`);
+    infoOverlay.innerHTML = "";
+    let infoUrl = `https://pokeapi.co/api/v2/pokemon/${i+1}`;
     let fetchInfoUrl = await (await fetch(infoUrl)).json();
-    let speciesData = await (await fetch(fetchInfoUrl.species.url)).json();
+    const [speciesData] = await Promise.all([
+        fetch(fetchInfoUrl.species.url).then(res => res.json())
+    ]);
     infoOverlay.innerHTML = infoCardTemplate(i);
     getNamesForInfocard(speciesData);
     getIdForInfocard(fetchInfoUrl);
